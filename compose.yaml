@@ -15,10 +15,27 @@ services:
       NODE_ENV: production
     ports:
       - 3000:3000
-  redis:
-    image: "redis:alpine"
+  web:
+    depends_on:
+      - db
+    image: "nginx:latest"
     ports:
-      - 6379
+      - 8080:80
+  db:
+    image: "mysql:latest"
+    container_name: "super-db"
+    restart: always
+    volumes:
+      - mysqlvol:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: "rootpass"
+      MYSQL_USER: "usr"
+      MYSQL_PASS: "pass"
+volumes:
+  mysqlvol:
+
+
+
 
 # The commented out section below is an example of how to define a PostgreSQL
 # database that your application can use. `depends_on` tells Docker Compose to
