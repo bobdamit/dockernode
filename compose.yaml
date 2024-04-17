@@ -20,7 +20,7 @@ services:
       - db
     image: "nginx:latest"
     ports:
-      - 8080:80
+      - 18080:80
   db:
     image: "mysql:latest"
     container_name: "super-db"
