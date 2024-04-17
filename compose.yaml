@@ -22,15 +22,16 @@ services:
     ports:
       - 18080:80
   db:
-    image: "mysql:latest"
+    image: "mysql:8.2"
     container_name: "super-db"
     restart: always
     volumes:
       - mysqlvol:/var/lib/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: "rootpass"
-      MYSQL_USER: "usr"
-      MYSQL_PASS: "pass"
+      MYSQL_ROOT_PASSWORD: r00t
+      MYSQL_DATABASE: test_schema
+    ports:
+      - '3307:3306'
 volumes:
   mysqlvol:
 
